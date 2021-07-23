@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Rock-Paper-Scissors</title>
   <meta charset="UTF-8"/>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
+    <div id="main">
+      <div id="choices">
+        <button type="button" class="selection" id="rock">Rock</button>
+        <button type="button" class="selection" id="paper">Paper</button>
+        <button type="button" class="selection" id="scissors">Scissors</button>
+      </div>
+      <div id="scores">
+        <div class="score-container">
+          <span>Player Score</span>
+          <h3 id="player-score">0</h3>
+        </div>
+        <div class="score-container">
+          <span>Computer Score</span>
+          <h3 id="computer-score">0</h3>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
