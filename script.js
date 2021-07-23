@@ -3,20 +3,26 @@ const scores = {
     computer: document.getElementById('computer-score')
 }
 
-const selections = document.querySelectorAll(".selection");
+const selections = document.querySelectorAll('.selection');
 selections.forEach(selection => {
     selection.addEventListener('click', e => {
         const playerSelection = selection.id;
         const computerSelection = computerPlay();
-        const result = playRound(playerSelection, computerSelection);
+        const roundResult = playRound(playerSelection, computerSelection);
 
-        if(result === "win") scores.player.innerText++; // Funky type coersion from string->number->string... it works tho
-        else if(result === "lose") scores.computer.innerText++;
+        // Clears result-container's text
+        const roundResultContainer = document.getElementById('round-result');
+        roundResultContainer.innerText = '';
 
-        printRound(playerSelection, computerSelection, result);
+        if(roundResult === 'win') scores.player.innerText++; // Funky type coersion from string->number->string (it works)
+        else if(roundResult === 'lose') scores.computer.innerText++;
 
-        if(scores.player.innerText >= 5) console.log("YOU ARE THE WINNER!!! CONGRATULATIONS!");
-        else if(scores.computer.innerText >= 5) console.log("YOU ARE THE LOSER!!! BOO!");
+        // Print result to HTML
+        roundResultContainer.innerText = roundResult.toUpperCase();
+
+        const finalResult = document.getElementById('final-result');
+        if(scores.player.innerText >= 5) finalResult.innerText = 'VICTORY';
+        else if(scores.computer.innerText >= 5) finalResult.innerHTML = 'DEFEAT';
     });
 });
 
@@ -42,12 +48,12 @@ function playRound(p1, p2) {
     return "lose";
 }
 
-// Outputs p1's victory/loss/draw
-function printRound(p1, p2, winloss) {
+function printRound(winloss) {
+    const result = document.getElementById('result');
     if(winloss === "draw")
         console.log("Draw!");
     if(winloss === "win")
-        console.log(`You win; ${p1} beats ${p2}!`);
+        console.log(`You win`);
     if(winloss === "lose")
-        console.log(`You lose; ${p2} beats ${p1}!`);
+        console.log(`You lose`);
 }
