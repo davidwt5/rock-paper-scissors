@@ -1,24 +1,24 @@
-// Main function
-function game() {
-    let scores = {
-        player: 0,
-        computer: 0
-    }
+const scores = {
+    player: 0,
+    computer: 0
+}
 
-    while(scores.player < 5 && scores.computer <  5) {
-        const playerSelection = window.prompt("ROCK, PAPER, SCISSORS?!"),
-            computerSelection = computerPlay();
+const selections = document.querySelectorAll(".selection");
+selections.forEach(selection => {
+    selection.addEventListener('click', e => {
+        const playerSelection = selection.id;
+        const computerSelection = computerPlay();
         const result = playRound(playerSelection, computerSelection);
 
         if(result === "win") scores.player++;
         else if(result === "lose") scores.computer++;
 
         printRound(playerSelection, computerSelection, result);
-    }
 
-    if(scores.player > scores.computer) console.log("YOU ARE THE WINNER!!! CONGRATULATIONS!");
-    else console.log("YOU ARE THE LOSER!!! BOO!");
-}
+        if(scores.player >= 5) console.log("YOU ARE THE WINNER!!! CONGRATULATIONS!");
+        else if(scores.computer >= 5) console.log("YOU ARE THE LOSER!!! BOO!");
+    });
+});
 
 // Randomly selects rock/paper/scissors
 function computerPlay(){
@@ -51,5 +51,3 @@ function printRound(p1, p2, winloss) {
     if(winloss === "lose")
         console.log(`You lose; ${p2} beats ${p1}!`);
 }
-
-game();
