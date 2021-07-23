@@ -1,6 +1,6 @@
 const scores = {
-    player: 0,
-    computer: 0
+    player: document.getElementById('player-score'),
+    computer: document.getElementById('computer-score')
 }
 
 const selections = document.querySelectorAll(".selection");
@@ -10,13 +10,13 @@ selections.forEach(selection => {
         const computerSelection = computerPlay();
         const result = playRound(playerSelection, computerSelection);
 
-        if(result === "win") scores.player++;
-        else if(result === "lose") scores.computer++;
+        if(result === "win") scores.player.innerText++; // Funky type coersion from string->number->string... it works tho
+        else if(result === "lose") scores.computer.innerText++;
 
         printRound(playerSelection, computerSelection, result);
 
-        if(scores.player >= 5) console.log("YOU ARE THE WINNER!!! CONGRATULATIONS!");
-        else if(scores.computer >= 5) console.log("YOU ARE THE LOSER!!! BOO!");
+        if(scores.player.innerText >= 5) console.log("YOU ARE THE WINNER!!! CONGRATULATIONS!");
+        else if(scores.computer.innerText >= 5) console.log("YOU ARE THE LOSER!!! BOO!");
     });
 });
 
