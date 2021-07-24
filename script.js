@@ -10,21 +10,31 @@ selections.forEach(selection => {
         const computerSelection = computerPlay();
         const roundResult = playRound(playerSelection, computerSelection);
 
-        // Clears result-container's text
-        const roundResultContainer = document.getElementById('round-result');
-        roundResultContainer.innerText = '';
-
         if(roundResult === 'win') scores.player.innerText++; // Funky type coersion from string->number->string (it works)
         else if(roundResult === 'lose') scores.computer.innerText++;
 
         // Print result to HTML
+        const roundResultContainer = document.getElementById('round-result');
         roundResultContainer.innerText = roundResult.toUpperCase();
 
         const finalResult = document.getElementById('final-result');
-        if(scores.player.innerText >= 5) finalResult.innerText = 'VICTORY';
-        else if(scores.computer.innerText >= 5) finalResult.innerHTML = 'DEFEAT';
+        if(scores.player.innerText >= 5) {
+            finalResult.innerText = 'VICTORY';
+            endScreen();
+        } else if(scores.computer.innerText >= 5) {
+            finalResult.innerHTML = 'DEFEAT';
+            endScreen();
+        }
     });
 });
+
+function endScreen(){
+    const main = document.getElementById('main');
+    main.classList.add('inactive');
+
+    const ending = document.getElementById('ending');
+    ending.classList.remove('inactive');
+}
 
 // Randomly selects rock/paper/scissors
 function computerPlay(){

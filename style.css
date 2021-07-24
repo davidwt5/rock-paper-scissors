@@ -1,0 +1,14 @@
+#choices {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#choices * {
+    width: 100px;
+    margin: auto;
+}
+
+.inactive {
+    display: none;
+}
