@@ -20,15 +20,31 @@ selections.forEach(selection => {
         const finalResult = document.getElementById('final-result');
         if(scores.player.innerText >= 5) {
             finalResult.innerText = 'VICTORY';
-            endScreen();
+            endGame();
         } else if(scores.computer.innerText >= 5) {
             finalResult.innerHTML = 'DEFEAT';
-            endScreen();
+            endGame();
         }
     });
 });
 
-function endScreen(){
+const resetBtn = document.getElementById('reset');
+resetBtn.addEventListener('click', e => {
+    resetGame();
+});
+
+function resetGame(){
+    const main = document.getElementById('main');
+    main.classList.remove('inactive');
+
+    const ending = document.getElementById('ending');
+    ending.classList.add('inactive');
+
+    scores.player.innerText = 0;
+    scores.computer.innerText = 0;
+}
+
+function endGame(){
     const main = document.getElementById('main');
     main.classList.add('inactive');
 
